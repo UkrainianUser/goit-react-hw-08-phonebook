@@ -1,31 +1,24 @@
-import css from './App.module.css';
-import ContactForm from './contactForm/ContactForm';
-import Filter from './filter/Filter';
-import ContactList from './contactList/ContactList';
-import Loader from './loader/Loader';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { getError, getIsLoading } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+
+const HomePage = lazy(() => import('../pages/Home'));
+// const RegisterPage = lazy(() => import('../pages/Register'));
+// const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
-    <div className={css.phonebook}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {error && <p>{error}</p>}
-      <ContactList />
-      {isLoading && <Loader />}
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/contacts" element={<ContactsPage />}></Route>
+    </Routes>
   );
 }
