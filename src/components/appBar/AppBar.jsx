@@ -17,6 +17,14 @@ const AppBar = () => {
         </NavLink>
         {/* )} */}
       </nav>
+      <div className={css.menu}>
+        <NavLink className={css.link} to="/register">
+          Register
+        </NavLink>
+        <NavLink className={css.link} to="/login">
+          Login
+        </NavLink>
+      </div>
       {/* <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
     </header>
