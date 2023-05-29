@@ -1,8 +1,9 @@
 import { lazy, useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { refreshUser } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './sharedLayout/SharedLayout';
+import { useAuth } from 'hooks/useAuth';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -11,12 +12,15 @@ const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <p>Refreshing user...</p>
+  ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />}></Route>

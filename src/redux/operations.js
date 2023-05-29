@@ -19,6 +19,10 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      const codeError = error.response.status;
+      if (codeError === 400) {
+        alert('A user with the same name or email is already registered');
+      }
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -78,6 +82,25 @@ export const deleteContact = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().auth;
+
+    if (token === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(token);
+      const response = await axios.get('/users/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
