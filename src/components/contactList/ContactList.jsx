@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 
 const ContactList = () => {
-  const dispatch = useDispatch();
   const visibleContacts = useSelector(getVisibleContacts);
+  const dispatch = useDispatch();
 
   return (
     <ul className={css.contactsList}>

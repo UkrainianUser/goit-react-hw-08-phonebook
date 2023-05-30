@@ -5,9 +5,9 @@ export const getFilter = ({ filter }) => filter;
 export const getIsLoading = ({ contacts: { isLoading } }) => isLoading;
 export const getError = ({ contacts: { error } }) => error;
 
-export const selectIsLoggedIn = state => state.auth.isLoggedIn;
-export const selectUser = state => state.auth.user;
-export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getUser = state => state.auth.user;
+export const getRefreshing = state => state.auth.isRefreshing;
 
 export const getVisibleContacts = createSelector(
   [getContacts, getFilter],
