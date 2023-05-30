@@ -7,3 +7,19 @@
   border-bottom: 2px solid rgb(0, 204, 204);
   height: 60px;
 }
+
+.nav, .menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+a {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgb(74, 74, 246)
+}
+
+a:hover {
+  color: rgb(0, 204, 204);
+}

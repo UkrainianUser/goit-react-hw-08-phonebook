@@ -8,7 +8,7 @@ const AppBar = () => {
 
   return (
     <header className={css.header}>
-      <nav>
+      <nav className={css.nav}>
         <NavLink className={css.link} to="/">
           Home
         </NavLink>

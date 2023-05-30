@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.button {
+  text-align: center;
+  margin-left: 16px;
+  max-height: 22px;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: rgb(255, 184, 71);
+  border-color: tomato;
+  border-radius: 6px;
+}
+
+.button:hover {
+  background-color: tomato;
+  border-color: tomato;
+}
